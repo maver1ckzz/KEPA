@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "id": "cervical_scs_paired_nifti_v1",
+  "inputs": {
+    "exam": "MRIExam",
+    "query": "DiagnosticQuery"
+  },
+  "query": {
+    "task": "spinal_canal_stenosis",
+    "required_views": ["sagittal_t2", "axial_t2"]
+  },
+  "steps": [
+    {
+      "id": "segment_sagittal",
+      "tool": "segmentation",
+      "operation": "segment",
+      "inputs": {"series": "$input.exam.series.sagittal_t2"},
+      "options": {
+        "view": "sagittal_t2",
+        "backend": "totalspineseg_cli",
+        "model_id": "totalspineseg",
+        "structures": ["vertebrae", "intervertebral_discs", "spinal_canal"]
+      }
+    },
+    {
+      "id": "select_sagittal_reference",
+      "tool": "slice_selection",
+      "operation": "select_sagittal_reference",
+      "inputs": {
+        "series": "$input.exam.series.sagittal_t2",
+        "mask": "$steps.segment_sagittal.mask"
+      },
+      "options": {
+        "view": "sagittal_t2",
+        "selector": "max_label_union_area",
+        "structure": "spinal_canal",
+        "label_ids": [1, 2]
+      }
+    },
+    {
+      "id": "match_sagittal_to_axial_levels",
+      "tool": "3d_matching",
+      "operation": "match_anatomical_levels",
+      "inputs": {
+        "source_series": "$input.exam.series.sagittal_t2",
+        "target_series": "$input.exam.series.axial_t2",
+        "source_mask": "$steps.segment_sagittal.mask",
+        "reference_slice": "$steps.select_sagittal_reference.slice"
+      },
+      "options": {
+        "direction": "sagittal_to_axial",
+        "method": "ratio",
+        "neighborhood_radius": 1,
+        "min_voxels_per_sagittal_slice": 41
+      }
+    },
+    {
+      "id": "export_sagittal_reference",
+      "tool": "slice_selection",
+      "operation": "export_reference_slice",
+      "inputs": {
+        "series": "$input.exam.series.sagittal_t2",
+        "slice": "$steps.select_sagittal_reference.slice"
+      },
+      "options": {"view": "sagittal_t2", "filename": "sagittal_reference.png"}
+    },
+    {
+      "id": "export_axial_levels",
+      "tool": "slice_selection",
+      "operation": "export_matched_slices",
+      "inputs": {
+        "series": "$input.exam.series.axial_t2",
+        "matches": "$steps.match_sagittal_to_axial_levels.matches"
+      },
+      "options": {"view": "axial_t2", "filename_prefix": "axial"}
+    }
+  ],
+  "outputs": {
+    "evidence": [
+      "$steps.export_sagittal_reference.evidence",
+      "$steps.export_axial_levels.evidence"
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "cervical_disc_body_quantile_v1",
+  "description": "Sagittal disc ROIs from adjacent vertebral-body masks and per-disc selected slices.",
+  "coordinate_system": "display-oriented sagittal image pixel coordinates",
+  "position_semantics": "For top/bottom, negative position moves inward from the corresponding mask edge. Horizontal padding expands the adjacent-body union by pixels.",
+  "rois": {
+    "C3-4": {
+      "bounds": {
+        "left": {"label_ids": [13, 14], "source_edge": "min", "position": 0},
+        "top": {"label_ids": [13], "source_edge": "max", "position": -0.5},
+        "right": {"label_ids": [13, 14], "source_edge": "max", "position": 0},
+        "bottom": {"label_ids": [14], "source_edge": "max", "position": -0.3333333333}
+      },
+      "padding_px": {"left": 5, "right": 5}
+    },
+    "C4-5": {
+      "bounds": {
+        "left": {"label_ids": [14, 15], "source_edge": "min", "position": 0},
+        "top": {"label_ids": [14], "source_edge": "max", "position": -0.5},
+        "right": {"label_ids": [14, 15], "source_edge": "max", "position": 0},
+        "bottom": {"label_ids": [15], "source_edge": "max", "position": -0.3333333333}
+      },
+      "padding_px": {"left": 5, "right": 5}
+    },
+    "C5-6": {
+      "bounds": {
+        "left": {"label_ids": [15, 16], "source_edge": "min", "position": 0},
+        "top": {"label_ids": [15], "source_edge": "max", "position": -0.5},
+        "right": {"label_ids": [15, 16], "source_edge": "max", "position": 0},
+        "bottom": {"label_ids": [16], "source_edge": "max", "position": -0.3333333333}
+      },
+      "padding_px": {"left": 5, "right": 5}
+    },
+    "C6-7": {
+      "bounds": {
+        "left": {"label_ids": [16, 17], "source_edge": "min", "position": 0},
+        "top": {"label_ids": [16], "source_edge": "max", "position": -0.5},
+        "right": {"label_ids": [16, 17], "source_edge": "max", "position": 0},
+        "bottom": {"label_ids": [17], "source_edge": "max", "position": -0.3333333333}
+      },
+      "padding_px": {"left": 5, "right": 5}
+    }
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "schema_version": "1.0",
+  "id": "rsna_lumbar_nfn_left_dual_view",
+  "inputs": {
+    "sag": "sagittal_t2",
+    "axl": "axial_t2"
+  },
+  "query": {
+    "task": "neural_foramen_stenosis",
+    "required_views": [
+      "sagittal_t2",
+      "axial_t2"
+    ]
+  },
+  "requested_regions": {
+    "sagittal_t2": [
+      "L1/L2",
+      "L2/L3",
+      "L3/L4",
+      "L4/L5",
+      "L5/S1"
+    ],
+    "axial_t2": [
+      "L1/L2",
+      "L2/L3",
+      "L3/L4",
+      "L4/L5",
+      "L5/S1"
+    ]
+  },
+  "steps": [
+    {
+      "id": "segment_sagittal",
+      "tool": "TotalSpineSeg",
+      "input": "sagittal_t2",
+      "output": "sagittal_labels",
+      "labels": {
+        "spinal_canal": [
+          1,
+          2
+        ],
+        "L1/L2": 92,
+        "L2/L3": 93,
+        "L3/L4": 94,
+        "L4/L5": 95,
+        "L5/S1": 100,
+        "T11": 31,
+        "T12": 32,
+        "L1": 41,
+        "L2": 42,
+        "L3": 43,
+        "L4": 44,
+        "L5": 45,
+        "S1": 50
+      }
+    },
+    {
+      "id": "segment_axial_canal",
+      "tool": "AxialCanalSeg",
+      "input": "axial_t2",
+      "output": "axial_labels",
+      "labels": {
+        "spinal_canal": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "clean_axial_canal",
+      "tool": "segmentation",
+      "operation": "postprocess",
+      "input": "axial_labels",
+      "output": "clean_axial_labels",
+      "options": {
+        "method": "center_nearest_largest_component",
+        "target_labels": "spinal_canal",
+        "minimum_area_fraction": 0.5
+      }
+    },
+    {
+      "id": "select_sagittal_canal_reference",
+      "tool": "slice_selection",
+      "operation": "select_sagittal_reference",
+      "output": "sagittal_canal_reference_slice",
+      "inputs": {
+        "series": "sagittal_t2",
+        "mask": "sagittal_labels"
+      },
+      "options": {
+        "selector": "max_label_union_area",
+        "labels": "spinal_canal"
+      }
+    },
+    {
+      "id": "match_disc_levels_to_axial",
+      "tool": "3d_matching",
+      "operation": "match_anatomical_levels",
+      "output": "axial_disc_slices",
+      "inputs": {
+        "source_series": "sagittal_t2",
+        "target_series": "axial_t2",
+        "source_mask": "sagittal_labels",
+        "reference_slice": "sagittal_canal_reference_slice"
+      },
+      "options": {
+        "direction": "sagittal_to_axial",
+        "method": "soft_distance",
+        "sigma_mm": 3
+      }
+    },
+    {
+      "id": "match_axial_points_to_sagittal",
+      "tool": "3d_matching",
+      "operation": "tra2sag_regions",
+      "output": "sagittal_nfn_slices",
+      "inputs": {
+        "source_series": "axial_t2",
+        "target_series": "sagittal_t2",
+        "source_mask": "clean_axial_labels",
+        "source_slices": "axial_disc_slices"
+      },
+      "options": {
+        "direction": "axial_to_sagittal",
+        "side": "left",
+        "point_rules": [
+          {
+            "regions": [
+              "L1/L2",
+              "L2/L3",
+              "L3/L4"
+            ],
+            "alpha": 0.15,
+            "beta": 0.15,
+            "outward_shift": 2
+          },
+          {
+            "regions": [
+              "L4/L5",
+              "L5/S1"
+            ],
+            "alpha": 0.2,
+            "beta": 0.25,
+            "outward_shift": 3
+          }
+        ],
+        "sigma_mm": 3
+      }
+    },
+    {
+      "id": "build_axial_nfn_rois",
+      "tool": "roi_extraction",
+      "operation": "mask_centered_bbox",
+      "output": "axial_nfn_rois",
+      "inputs": {
+        "series": "axial_t2",
+        "mask": "clean_axial_labels",
+        "selection": "axial_disc_slices"
+      },
+      "options": {
+        "labels": "spinal_canal",
+        "center_offset_px": [
+          48,
+          0
+        ],
+        "half_size_px": [
+          48,
+          48
+        ],
+        "reference_size": [
+          512,
+          512
+        ]
+      }
+    },
+    {
+      "id": "build_sagittal_nfn_rois",
+      "tool": "roi_extraction",
+      "operation": "point_bbox",
+      "output": "sagittal_nfn_rois",
+      "inputs": {
+        "series": "sagittal_t2",
+        "selection": "sagittal_nfn_slices"
+      },
+      "options": {
+        "points_from_match": true,
+        "margin_px": {
+          "left": 48,
+          "right": 48,
+          "top": 48,
+          "bottom": 48
+        },
+        "reference_size": [
+          512,
+          512
+        ]
+      }
+    }
+  ],
+  "outputs": {
+    "results": [
+      "sagittal_nfn_rois",
+      "axial_nfn_rois"
+    ]
+  },
+  "save_qc": true
+}

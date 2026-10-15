@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "cervical_disc_only_sagittal_v1",
+  "inputs": {
+    "sag": "sagittal_t2"
+  },
+  "query": {
+    "task": "intervertebral_disc_stenosis",
+    "required_views": ["sagittal_t2"]
+  },
+  "requested_regions": {
+    "sagittal_t2": ["C3/C4", "C4/C5", "C5/C6", "C6/C7"]
+  },
+  "steps": [
+    {
+      "id": "segment_sagittal",
+      "tool": "TotalSpineSeg",
+      "input": "sagittal_t2",
+      "output": "sagittal_labels",
+      "labels": {
+        "spinal_canal": [1, 2],
+        "C3": 13,
+        "C4": 14,
+        "C5": 15,
+        "C6": 16,
+        "C7": 17,
+        "C3/C4": 64,
+        "C4/C5": 65,
+        "C5/C6": 66,
+        "C6/C7": 67
+      }
+    },
+    {
+      "id": "clean_sagittal_labels",
+      "tool": "segmentation",
+      "operation": "postprocess",
+      "input": "sagittal_labels",
+      "output": "clean_sagittal_labels",
+      "options": {
+        "method": "anterior_largest_component",
+        "target_labels": ["vertebral_bodies"],
+        "reference_labels": "spinal_canal"
+      }
+    },
+    {
+      "id": "select_disc_slices",
+      "tool": "slice_selection",
+      "operation": "select_sagittal_regions",
+      "inputs": {
+        "series": "sagittal_t2",
+        "mask": "clean_sagittal_labels"
+      },
+      "options": {
+        "selector": "max_label_union_area",
+        "regions": {
+          "C3/C4": ["C3", "C4"],
+          "C4/C5": ["C4", "C5"],
+          "C5/C6": ["C5", "C6"],
+          "C6/C7": ["C6", "C7"]
+        }
+      },
+      "output": "disc_level_slices"
+    },
+    {
+      "id": "build_disc_rois",
+      "tool": "roi_extraction",
+      "operation": "composite_bbox",
+      "inputs": {
+        "series": "sagittal_t2",
+        "mask": "clean_sagittal_labels",
+        "slice_selection": "disc_level_slices"
+      },
+      "options": {
+        "preset_file": "cervical_disc_body_quantile_v1.json"
+      },
+      "output": "sagittal_disc_rois"
+    }
+  ],
+  "outputs": {
+    "results": ["sagittal_disc_rois"]
+  },
+  "save_qc": true
+}

@@ -1,0 +1,196 @@
+{
+  "id": "rsna_scs_axial_canal_center48",
+  "coordinate_system": "display-oriented axial image pixel coordinates",
+  "rois": {
+    "L1-2": {
+      "bounds": {
+        "left": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": -0.5
+        },
+        "top": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": -0.5
+        },
+        "right": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        },
+        "bottom": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        }
+      },
+      "padding_px": {
+        "left": 48,
+        "top": 48,
+        "right": 48,
+        "bottom": 48
+      }
+    },
+    "L2-3": {
+      "bounds": {
+        "left": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": -0.5
+        },
+        "top": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": -0.5
+        },
+        "right": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        },
+        "bottom": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        }
+      },
+      "padding_px": {
+        "left": 48,
+        "top": 48,
+        "right": 48,
+        "bottom": 48
+      }
+    },
+    "L3-4": {
+      "bounds": {
+        "left": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": -0.5
+        },
+        "top": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": -0.5
+        },
+        "right": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        },
+        "bottom": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        }
+      },
+      "padding_px": {
+        "left": 48,
+        "top": 48,
+        "right": 48,
+        "bottom": 48
+      }
+    },
+    "L4-5": {
+      "bounds": {
+        "left": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": -0.5
+        },
+        "top": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": -0.5
+        },
+        "right": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        },
+        "bottom": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        }
+      },
+      "padding_px": {
+        "left": 48,
+        "top": 48,
+        "right": 48,
+        "bottom": 48
+      }
+    },
+    "L5-S1": {
+      "bounds": {
+        "left": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": -0.5
+        },
+        "top": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": -0.5
+        },
+        "right": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        },
+        "bottom": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        }
+      },
+      "padding_px": {
+        "left": 48,
+        "top": 48,
+        "right": 48,
+        "bottom": 48
+      }
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "id": "axial_canal_bbox_shift_upper_left_half_v1",
+  "description": "For each requested intervertebral level, shift the axial spinal-canal mask bounding box left by half its width and up by half its height without changing its nominal size (clipped to image boundaries).",
+  "coordinate_system": "display-oriented axial image pixel coordinates",
+  "position_semantics": "left/top positive values move outward from mask minima; right/bottom negative values move inward from mask maxima. All four edges use the spinal-canal mask bounding-box extent.",
+  "rois": {
+    "C3-4": {
+      "bounds": {
+        "left": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": 0.5
+        },
+        "top": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": 0.5
+        },
+        "right": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        },
+        "bottom": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        }
+      }
+    },
+    "C4-5": {
+      "bounds": {
+        "left": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": 0.5
+        },
+        "top": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": 0.5
+        },
+        "right": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        },
+        "bottom": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        }
+      }
+    },
+    "C5-6": {
+      "bounds": {
+        "left": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": 0.5
+        },
+        "top": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": 0.5
+        },
+        "right": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        },
+        "bottom": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        }
+      }
+    },
+    "C6-7": {
+      "bounds": {
+        "left": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": 0.5
+        },
+        "top": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "min",
+          "position": 0.5
+        },
+        "right": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        },
+        "bottom": {
+          "label_ids": [
+            1
+          ],
+          "source_edge": "max",
+          "position": -0.5
+        }
+      }
+    }
+  }
+}

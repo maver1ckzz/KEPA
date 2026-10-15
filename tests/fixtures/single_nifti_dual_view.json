@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "single_nifti_dual_view_test_fixture",
+  "inputs": {"exam": "MRIExam", "query": "DiagnosticQuery"},
+  "query": {"task": "spinal_canal_stenosis", "required_views": ["sagittal_t2", "axial_t2"]},
+  "steps": [
+    {
+      "id": "segment_sagittal_vertebrae", "tool": "segmentation", "operation": "segment",
+      "inputs": {"series": "$input.exam.series.sagittal_t2"},
+      "options": {"view": "sagittal_t2", "backend": "sct_cli", "model_id": "totalspineseg",
+                   "structures": ["vertebrae", "intervertebral_discs", "spinal_canal"]}
+    },
+    {
+      "id": "segment_sagittal_canal", "tool": "segmentation", "operation": "segment",
+      "inputs": {"series": "$input.exam.series.sagittal_t2"},
+      "options": {"view": "sagittal_t2", "backend": "sct_cli", "model_id": "totalspineseg",
+                   "structures": ["spinal_canal"]}
+    },
+    {
+      "id": "segment_axial_canal", "tool": "segmentation", "operation": "segment",
+      "inputs": {"series": "$input.exam.series.axial_t2"},
+      "options": {"view": "axial_t2", "backend": "sct_cli", "model_id": "totalspineseg",
+                   "structures": ["spinal_canal"]}
+    },
+    {
+      "id": "select_sagittal_reference", "tool": "slice_selection", "operation": "select_sagittal_reference",
+      "inputs": {"series": "$input.exam.series.sagittal_t2", "mask": "$steps.segment_sagittal_canal.mask"},
+      "options": {"view": "sagittal_t2", "selector": "max_structure_area", "structure": "spinal_canal"}
+    },
+    {
+      "id": "match_sagittal_to_axial", "tool": "3d_matching", "operation": "match",
+      "inputs": {"source_series": "$input.exam.series.sagittal_t2",
+                 "target_series": "$input.exam.series.axial_t2",
+                 "source_mask": "$steps.segment_sagittal_vertebrae.mask", "level": "$input.query.level"},
+      "options": {"direction": "sagittal_to_axial", "sigma_mm": 3.0}
+    },
+    {
+      "id": "select_axial_level", "tool": "slice_selection", "operation": "select_matched_slice",
+      "inputs": {"series": "$input.exam.series.axial_t2", "match": "$steps.match_sagittal_to_axial.match"},
+      "options": {"view": "axial_t2", "selector": "best_match"}
+    },
+    {
+      "id": "build_sagittal_roi", "tool": "roi_extraction", "operation": "construct",
+      "inputs": {"image": "$steps.select_sagittal_reference.slice",
+                 "mask": "$steps.segment_sagittal_canal.mask", "level": "$input.query.level"},
+      "options": {"rule": "mask_bbox", "structure": "spinal_canal"}
+    },
+    {
+      "id": "build_axial_roi", "tool": "roi_extraction", "operation": "construct",
+      "inputs": {"image": "$steps.select_axial_level.slice",
+                 "mask": "$steps.segment_axial_canal.mask", "level": "$input.query.level"},
+      "options": {"rule": "mask_bbox", "structure": "spinal_canal"}
+    }
+  ],
+  "outputs": {"evidence": ["$steps.build_sagittal_roi.evidence", "$steps.build_axial_roi.evidence"]}
+}

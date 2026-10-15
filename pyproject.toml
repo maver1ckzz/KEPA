@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kepa-evidence"
+version = "0.1.0"
+description = "Knowledge-guided MRI evidence workflow framework"
+requires-python = ">=3.10"
+dependencies = [
+    "jsonschema>=4.22,<5",
+    "numpy>=1.24,<3",
+    "nibabel>=5.2,<6",
+    "scipy>=1.10,<2",
+    "Pillow>=10,<13",
+]
+
+[project.scripts]
+kepa = "kepa.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+kepa = ["workflow.schema.json"]

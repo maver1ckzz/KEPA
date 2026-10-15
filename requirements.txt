@@ -1,0 +1,24 @@
+# CUDA PyTorch wheels are published on the official PyTorch index.
+--extra-index-url https://download.pytorch.org/whl/cu121
+
+# Tested with Python 3.10; CUDA/PyTorch wheel selection is platform-specific.
+# KEPA core dependencies are also declared in pyproject.toml.
+-e .
+numpy==1.26.4
+nibabel==5.3.2
+Pillow==11.3.0
+simpleitk==2.5.2
+torch==2.2.2+cu121
+torchvision==0.17.2+cu121
+nnunetv2==2.5.2
+totalspineseg==20250709
+acvl-utils==0.2.5
+batchgenerators==0.25.1
+batchgeneratorsv2==0.3.0
+dynamic-network-architectures==0.3.1
+torchio==0.20.22
+nilearn==0.10.4
+pandas==1.5.3
+
+# The resident axial adapters use nnU-Net v2 directly; SCT is not required.
+pytest>=8,<9

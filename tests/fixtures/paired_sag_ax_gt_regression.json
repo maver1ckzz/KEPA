@@ -1,0 +1,40 @@
+{
+  "case_alias": "paired_nifti_gt_regression",
+  "dicom_gt_indices": {
+    "C3": 0,
+    "C3-4": 2,
+    "C4": 4,
+    "C4-5": 6,
+    "C5": 8,
+    "C5-6": 10,
+    "C6": 13,
+    "C6-7": 15,
+    "C7": 17
+  },
+  "axial_slice_count": 18,
+  "predicted_nifti_indices": {
+    "C3": 17,
+    "C3-4": 15,
+    "C4": 13,
+    "C4-5": 11,
+    "C5": 9,
+    "C5-6": 7,
+    "C6": 5,
+    "C6-7": 2,
+    "C7": 0
+  },
+  "soft_distance_predicted_nifti_indices": {
+    "C3": 17,
+    "C3-4": 15,
+    "C4": 13,
+    "C4-5": 11,
+    "C5": 9,
+    "C5-6": 7,
+    "C6": 5,
+    "C6-7": 2,
+    "C7": 0
+  },
+  "expected_exact_matches": 8,
+  "expected_mean_absolute_error_slices": 0.1111111111111111,
+  "expected_max_absolute_error_slices": 1
+}

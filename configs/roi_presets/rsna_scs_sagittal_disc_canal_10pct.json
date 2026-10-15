@@ -1,0 +1,256 @@
+{
+  "id": "rsna_scs_sagittal_disc_canal_10pct",
+  "coordinate_system": "display-oriented sagittal image pixel coordinates",
+  "rois": {
+    "L1-2": {
+      "bounds": {
+        "left": {
+          "label_ids": [
+            92
+          ],
+          "source_edge": "min",
+          "position": 0.1
+        },
+        "top": {
+          "label_ids": [
+            92
+          ],
+          "source_edge": "min",
+          "position": 0.1
+        },
+        "right": {
+          "candidates": [
+            {
+              "label_ids": [
+                1,
+                2
+              ],
+              "source_edge": "max",
+              "position": 0.1,
+              "scope": {
+                "axis": "y",
+                "reference_label_ids": [
+                  92
+                ]
+              }
+            },
+            {
+              "label_ids": [
+                92
+              ],
+              "source_edge": "max",
+              "position": 0.5
+            }
+          ]
+        },
+        "bottom": {
+          "label_ids": [
+            92
+          ],
+          "source_edge": "max",
+          "position": 0.1
+        }
+      }
+    },
+    "L2-3": {
+      "bounds": {
+        "left": {
+          "label_ids": [
+            93
+          ],
+          "source_edge": "min",
+          "position": 0.1
+        },
+        "top": {
+          "label_ids": [
+            93
+          ],
+          "source_edge": "min",
+          "position": 0.1
+        },
+        "right": {
+          "candidates": [
+            {
+              "label_ids": [
+                1,
+                2
+              ],
+              "source_edge": "max",
+              "position": 0.1,
+              "scope": {
+                "axis": "y",
+                "reference_label_ids": [
+                  93
+                ]
+              }
+            },
+            {
+              "label_ids": [
+                93
+              ],
+              "source_edge": "max",
+              "position": 0.5
+            }
+          ]
+        },
+        "bottom": {
+          "label_ids": [
+            93
+          ],
+          "source_edge": "max",
+          "position": 0.1
+        }
+      }
+    },
+    "L3-4": {
+      "bounds": {
+        "left": {
+          "label_ids": [
+            94
+          ],
+          "source_edge": "min",
+          "position": 0.1
+        },
+        "top": {
+          "label_ids": [
+            94
+          ],
+          "source_edge": "min",
+          "position": 0.1
+        },
+        "right": {
+          "candidates": [
+            {
+              "label_ids": [
+                1,
+                2
+              ],
+              "source_edge": "max",
+              "position": 0.1,
+              "scope": {
+                "axis": "y",
+                "reference_label_ids": [
+                  94
+                ]
+              }
+            },
+            {
+              "label_ids": [
+                94
+              ],
+              "source_edge": "max",
+              "position": 0.5
+            }
+          ]
+        },
+        "bottom": {
+          "label_ids": [
+            94
+          ],
+          "source_edge": "max",
+          "position": 0.1
+        }
+      }
+    },
+    "L4-5": {
+      "bounds": {
+        "left": {
+          "label_ids": [
+            95
+          ],
+          "source_edge": "min",
+          "position": 0.1
+        },
+        "top": {
+          "label_ids": [
+            95
+          ],
+          "source_edge": "min",
+          "position": 0.1
+        },
+        "right": {
+          "candidates": [
+            {
+              "label_ids": [
+                1,
+                2
+              ],
+              "source_edge": "max",
+              "position": 0.1,
+              "scope": {
+                "axis": "y",
+                "reference_label_ids": [
+                  95
+                ]
+              }
+            },
+            {
+              "label_ids": [
+                95
+              ],
+              "source_edge": "max",
+              "position": 0.5
+            }
+          ]
+        },
+        "bottom": {
+          "label_ids": [
+            95
+          ],
+          "source_edge": "max",
+          "position": 0.1
+        }
+      }
+    },
+    "L5-S1": {
+      "bounds": {
+        "left": {
+          "label_ids": [
+            100
+          ],
+          "source_edge": "min",
+          "position": 0.1
+        },
+        "top": {
+          "label_ids": [
+            100
+          ],
+          "source_edge": "min",
+          "position": 0.1
+        },
+        "right": {
+          "candidates": [
+            {
+              "label_ids": [
+                1,
+                2
+              ],
+              "source_edge": "max",
+              "position": 0.1,
+              "scope": {
+                "axis": "y",
+                "reference_label_ids": [
+                  100
+                ]
+              }
+            },
+            {
+              "label_ids": [
+                100
+              ],
+              "source_edge": "max",
+              "position": 0.5
+            }
+          ]
+        },
+        "bottom": {
+          "label_ids": [
+            100
+          ],
+          "source_edge": "max",
+          "position": 0.1
+        }
+      }
+    }
+  }
+}

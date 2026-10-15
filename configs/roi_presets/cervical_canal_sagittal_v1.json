@@ -1,0 +1,116 @@
+{
+  "id": "cervical_canal_sagittal_v1",
+  "description": "Task-specific C3-C7 vertebral body and intervening disc boxes on the selected sagittal slice.",
+  "coordinate_system": "display-oriented sagittal image pixel coordinates",
+  "position_semantics": "For left/top, positive moves outward from the mask minimum and negative moves inward. For right/bottom, positive moves outward from the mask maximum and negative moves inward. Fractions are relative to that label-union extent. A center anchor uses the extent midpoint; positive follows increasing image coordinates.",
+  "rois": {
+    "C3": {
+      "bounds": {
+        "left": {"label_ids": [13], "source_edge": "center", "position": 0},
+        "top": {"label_ids": [13], "source_edge": "min", "position": 0},
+        "right": {"candidates": [
+          {"label_ids": [1, 2], "source_edge": "max", "position": 0,
+           "scope": {"axis": "y", "reference_label_ids": [13]}},
+          {"label_ids": [13], "source_edge": "max", "position": 1}
+        ]},
+        "bottom": {"label_ids": [13], "source_edge": "max", "position": 0}
+      }
+    },
+    "C3-4": {
+      "bounds": {
+        "left": {"label_ids": [13, 14], "source_edge": "center", "position": 0},
+        "top": {"label_ids": [13], "source_edge": "max", "position": -0.6666666667},
+        "right": {"candidates": [
+          {"label_ids": [1, 2], "source_edge": "max", "position": 0,
+           "scope": {"axis": "y", "reference_label_ids": [64]}},
+          {"label_ids": [13, 14], "source_edge": "max", "position": 1}
+        ]},
+        "bottom": {"label_ids": [14], "source_edge": "max", "position": -0.5}
+      }
+    },
+    "C4": {
+      "bounds": {
+        "left": {"label_ids": [14], "source_edge": "center", "position": 0},
+        "top": {"label_ids": [14], "source_edge": "min", "position": 0},
+        "right": {"candidates": [
+          {"label_ids": [1, 2], "source_edge": "max", "position": 0,
+           "scope": {"axis": "y", "reference_label_ids": [14]}},
+          {"label_ids": [14], "source_edge": "max", "position": 1}
+        ]},
+        "bottom": {"label_ids": [14], "source_edge": "max", "position": 0}
+      }
+    },
+    "C4-5": {
+      "bounds": {
+        "left": {"label_ids": [14, 15], "source_edge": "center", "position": 0},
+        "top": {"label_ids": [14], "source_edge": "max", "position": -0.6666666667},
+        "right": {"candidates": [
+          {"label_ids": [1, 2], "source_edge": "max", "position": 0,
+           "scope": {"axis": "y", "reference_label_ids": [65]}},
+          {"label_ids": [14, 15], "source_edge": "max", "position": 1}
+        ]},
+        "bottom": {"label_ids": [15], "source_edge": "max", "position": -0.5}
+      }
+    },
+    "C5": {
+      "bounds": {
+        "left": {"label_ids": [15], "source_edge": "center", "position": 0},
+        "top": {"label_ids": [15], "source_edge": "min", "position": 0},
+        "right": {"candidates": [
+          {"label_ids": [1, 2], "source_edge": "max", "position": 0,
+           "scope": {"axis": "y", "reference_label_ids": [15]}},
+          {"label_ids": [15], "source_edge": "max", "position": 1}
+        ]},
+        "bottom": {"label_ids": [15], "source_edge": "max", "position": 0}
+      }
+    },
+    "C5-6": {
+      "bounds": {
+        "left": {"label_ids": [15, 16], "source_edge": "center", "position": 0},
+        "top": {"label_ids": [15], "source_edge": "max", "position": -0.6666666667},
+        "right": {"candidates": [
+          {"label_ids": [1, 2], "source_edge": "max", "position": 0,
+           "scope": {"axis": "y", "reference_label_ids": [66]}},
+          {"label_ids": [15, 16], "source_edge": "max", "position": 1}
+        ]},
+        "bottom": {"label_ids": [16], "source_edge": "max", "position": -0.5}
+      }
+    },
+    "C6": {
+      "bounds": {
+        "left": {"label_ids": [16], "source_edge": "center", "position": 0},
+        "top": {"label_ids": [16], "source_edge": "min", "position": 0},
+        "right": {"candidates": [
+          {"label_ids": [1, 2], "source_edge": "max", "position": 0,
+           "scope": {"axis": "y", "reference_label_ids": [16]}},
+          {"label_ids": [16], "source_edge": "max", "position": 1}
+        ]},
+        "bottom": {"label_ids": [16], "source_edge": "max", "position": 0}
+      }
+    },
+    "C6-7": {
+      "bounds": {
+        "left": {"label_ids": [16, 17], "source_edge": "center", "position": 0},
+        "top": {"label_ids": [16], "source_edge": "max", "position": -0.6666666667},
+        "right": {"candidates": [
+          {"label_ids": [1, 2], "source_edge": "max", "position": 0,
+           "scope": {"axis": "y", "reference_label_ids": [67]}},
+          {"label_ids": [16, 17], "source_edge": "max", "position": 1}
+        ]},
+        "bottom": {"label_ids": [17], "source_edge": "max", "position": -0.5}
+      }
+    },
+    "C7": {
+      "bounds": {
+        "left": {"label_ids": [17], "source_edge": "center", "position": 0},
+        "top": {"label_ids": [17], "source_edge": "min", "position": 0},
+        "right": {"candidates": [
+          {"label_ids": [1, 2], "source_edge": "max", "position": 0,
+           "scope": {"axis": "y", "reference_label_ids": [17]}},
+          {"label_ids": [17], "source_edge": "max", "position": 1}
+        ]},
+        "bottom": {"label_ids": [17], "source_edge": "max", "position": 0}
+      }
+    }
+  }
+}
