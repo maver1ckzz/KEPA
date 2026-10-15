@@ -1,7 +1,13 @@
+# SPDX-FileCopyrightText: 2023 Polytechnique Montreal <www.neuro.polymtl.ca>
 # SPDX-FileCopyrightText: 2026 KEPA contributors
 # SPDX-License-Identifier: LGPL-3.0-only
-# Modified on 2026-10-16. This file adapts SCT 7.1 nnU-Net inference behavior;
-# see THIRD_PARTY_NOTICES.md and LICENSE-LGPL-3.0-only for provenance and terms.
+# Adapted from SCT 7.1 spinalcordtoolbox/deepseg/inference.py::segment_nnunet
+# (credited there to Jan Valosek and Naga Karthik) and
+# spinalcordtoolbox/deepseg/nnunet.py::create_nnunet_from_plans.
+# The SCT 7.1 release identifies short commit 70883e8; the local reference
+# snapshot had no Git metadata, so an exact commit match is unverified.
+# Modified by KEPA contributors on 2026-10-16. See THIRD_PARTY_NOTICES.md,
+# LICENSE-LGPL-3.0-only, and LICENSE-GPL-3.0-only for provenance and terms.
 
 """Resident axial nnU-Net models behind KEPA's segmentation contract.
 
