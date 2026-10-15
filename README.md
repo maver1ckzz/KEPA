@@ -150,7 +150,13 @@ The manifest records inputs (paths, hashes, geometry), step status and parameter
 
 ## License
 
-The project-level license has not yet been selected. Until a `LICENSE` file is added by the maintainers, no open-source license is granted for KEPA itself. Third-party notices describe upstream components and do not determine KEPA's license.
+KEPA uses a **mixed-license** arrangement:
+
+- KEPA-authored source code, documentation, workflow configurations, and caption-generation client/prompts are licensed under Apache-2.0, except for the file listed below. See [`LICENSE`](LICENSE).
+- [`src/kepa/tools/segmentation/axial_nnunet.py`](src/kepa/tools/segmentation/axial_nnunet.py) is a modified implementation based on SCT 7.1 behavior and is separately licensed under LGPL-3.0-only. The complete license text is provided in [`LICENSE-LGPL-3.0-only`](LICENSE-LGPL-3.0-only); the file contains its own SPDX and modification notices.
+- Third-party packages, model repositories, and model weights are not relicensed by these project licenses. Their individual terms and attribution are summarized in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md); obtain model weights from their upstream sources and follow any asset-specific terms.
+
+The Apache-2.0 license applies only to KEPA-owned materials for which the project has the rights to grant it; it does not replace or override the LGPL terms for the axial adapter or the licenses of third-party components. This notice describes the intended file-level scope of the licenses in this repository.
 
 ## Current limitations
 

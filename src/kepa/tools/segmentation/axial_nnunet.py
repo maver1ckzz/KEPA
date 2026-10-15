@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2026 KEPA contributors
+# SPDX-License-Identifier: LGPL-3.0-only
+# Modified on 2026-10-16. This file adapts SCT 7.1 nnU-Net inference behavior;
+# see THIRD_PARTY_NOTICES.md and LICENSE-LGPL-3.0-only for provenance and terms.
+
 """Resident axial nnU-Net models behind KEPA's segmentation contract.
 
 This is a KEPA implementation of the minimal model-loading and orientation
